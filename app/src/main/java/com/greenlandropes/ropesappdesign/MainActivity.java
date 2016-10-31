@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,17 +15,22 @@ import android.widget.ToggleButton;
 import java.util.*;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
 
-    //to do: make 4 class variables to store score objects for fl, fr, bl, br
-    public int fl = 0;
-    public int fr = 0;
-    public int bl = 0;
-    public int br = 0;
+    static int fl;
+    static int fr;
+    static int bl;
+    public int br;
     public int roundNumber = 0;
-    List<Score> scores = new ArrayList<Score>();
-
+    List<Score> scores = new ArrayList<>();
+    /*
+    public Score(int startfl, int startfr, int startbl, int startbr) {
+        fl = startfl;
+        fr = startfr;
+        bl = startbl;
+        br = startbr;}
+    */
 
 
     @Override
@@ -34,6 +39,13 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         //to do: instantiate score class 4 times based on current round
+
+       /*
+        Score score = new Score("fl" + roundNumber, 1);
+        Score score = new Score("fr" + roundNumber, 1);
+        Score score = new Score("bl" + roundNumber, 1);
+        Score score = new Score("br" + roundNumber, 1);
+        */
     }
 
     @Override
@@ -58,7 +70,7 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
+    /*
      * Displays the given score.
      */
     public void displayScore() {
