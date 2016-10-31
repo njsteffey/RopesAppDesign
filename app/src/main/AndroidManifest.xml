@@ -16,14 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Akulaammillugu"
-            android:label="@string/title_activity_akulaammillugu" >
-        </activity>
-        <activity
-            android:name=".Oqaatsuaasaarneq"
-            android:label="@string/title_activity_oqaatsuaasaarneq" >
-        </activity>
     </application>
 
 </manifest>

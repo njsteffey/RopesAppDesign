@@ -12,18 +12,28 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+import java.util.*;
+
 
 public class MainActivity extends ActionBarActivity {
 
-    int fl = 0;
-    int fr = 0;
-    int bl = 0;
-    int br = 0;
+
+    //to do: make 4 class variables to store score objects for fl, fr, bl, br
+    public int fl = 0;
+    public int fr = 0;
+    public int bl = 0;
+    public int br = 0;
+    public int roundNumber = 0;
+    List<Score> scores = new ArrayList<Score>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //to do: instantiate score class 4 times based on current round
     }
 
     @Override
@@ -119,6 +129,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void nextMove(View view) {
+
+
     }
 
     public class CountDown extends Activity implements OnClickListener {
