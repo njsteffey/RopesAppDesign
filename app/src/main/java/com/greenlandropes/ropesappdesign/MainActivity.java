@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,16 +23,26 @@ public class MainActivity extends AppCompatActivity {
     static int fl;
     static int fr;
     static int bl;
-    public int br;
+    static int br;
     public int roundNumber = 0;
+    public int totalMoves = 10;
+
+
+    boolean [] flc = new boolean [totalMoves];
+    boolean [] frc = new boolean [totalMoves];
+    boolean [] blc = new boolean [totalMoves];
+    boolean [] brc = new boolean [totalMoves];
+
+
+    //            1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
+    int [] flv = {1, 1, 2, 3, 3, 2, 2, 1, 2, 2, 3, 2, 3, 3, 0, 5, 7, 6, 4, 2, 3, 2, 2, 2, 3, 4, 8};
+    int [] frv = {0, 1, 2, 3, 3, 2, 2, 1, 2, 2, 3, 2, 3, 3, 0, 5, 7, 6, 4, 0, 0, 0, 0, 2, 0, 0, 8};
+    int [] blv = {1, 1, 0, 3, 3, 2, 2, 1, 2, 2, 3, 0, 3, 3, 3, 5, 7, 6, 4, 2, 3, 2, 2, 2, 3, 5, 0};
+    int [] brv = {0, 1, 0, 3, 3, 2, 2, 1, 2, 2, 3, 0, 3, 3, 3, 5, 7, 6, 4, 0, 0, 0, 0, 2, 0, 0, 0};
+
+
     List<Score> scores = new ArrayList<>();
-    /*
-    public Score(int startfl, int startfr, int startbl, int startbr) {
-        fl = startfl;
-        fr = startfr;
-        bl = startbl;
-        br = startbr;}
-    */
+
 
 
     @Override
@@ -40,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
 
         //to do: instantiate score class 4 times based on current round
 
-       /*
+        /*
         Score score = new Score("fl" + roundNumber, 1);
         Score score = new Score("fr" + roundNumber, 1);
         Score score = new Score("bl" + roundNumber, 1);
         Score score = new Score("br" + roundNumber, 1);
         */
-    }
+}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,12 +69,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -71,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-     * Displays the given score.
-     */
+    Displays the given score.
+    */
     public void displayScore() {
         int score = fl + fr + bl + br;
         TextView scoreView = (TextView) findViewById(R.id.score);
@@ -80,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Increase the score for Team A by 1 point.
+     * Scoring Buttons.
      */
 
     public void addForwardLeft(View v) {
@@ -134,16 +143,30 @@ public class MainActivity extends AppCompatActivity {
         fr = 0;
         bl = 0;
         br = 0;
+        roundNumber = 0;
         displayScore();
     }
 
     public void backMove(View view) {
+        if (roundNumber > 0) {
+            roundNumber = roundNumber - 1;
+        } else {
+            roundNumber = roundNumber + 0;
+        }
+
     }
 
     public void nextMove(View view) {
-
+        if (roundNumber < totalMoves) {
+            roundNumber = roundNumber + 1;
+        } else {
+            roundNumber = roundNumber + 0;
+        }
 
     }
+
+
+    //TIMER CODE BELOW. NOT CURRENTLY WORKING
 
     public class CountDown extends Activity implements OnClickListener {
 
